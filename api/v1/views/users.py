@@ -4,6 +4,7 @@ from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
 from models.user import User
+import hashlib
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
@@ -15,7 +16,10 @@ def users():
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 def r_user_id(user_id):
-    """ Retrieves a User object """
+    """
+    Retrieves a User object
+    file: yml/users_get.yml
+    """
     user = storage.get("User", user_id)
     if not user:
         abort(404)
